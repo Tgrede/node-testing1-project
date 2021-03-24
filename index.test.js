@@ -15,7 +15,7 @@ describe('[Exercise 1] trimProperties', () => {
 
 describe('[Exercise 2] trimPropertiesMutation', () => {
   it('[3] returns an object with the properties trimmed', () => {
-    // ✨ test away
+    // ✨ test away 
   })
   it('[4] the object returned is the exact same one we passed in', () => {
     // ✨ test away
