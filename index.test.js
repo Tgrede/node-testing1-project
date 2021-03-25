@@ -29,12 +29,20 @@ describe('[Exercise 2] trimPropertiesMutation', () => {
   })
   it('[4] the object returned is the exact same one we passed in', () => {
     // ✨ test away
+    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    const actual = utils.trimPropertiesMutation(input)
+    expect(input).toStrictEqual(actual)
+    
   })
 })
 
 describe('[Exercise 3] findLargestInteger', () => {
   it('[5] returns the largest number in an array of numbers', () => {
     // ✨ test away
+    const numArr = [2, 45, 1, 2000, 0, 8, -4]
+    const expected = 2000
+    const largest = utils.findLargestInteger(numArr)
+    expect(largest).toBe(expected)
   })
 })
 
@@ -44,13 +52,19 @@ describe('[Exercise 4] Counter', () => {
     counter = new utils.Counter(3) // each test must start with a fresh couter
   })
   it('[6] the FIRST CALL of counter.countDown returns the initial count', () => {
-    // ✨ test away
+    expect(counter.countDown()).toBe(3)
   })
   it('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {
-    // ✨ test away
+    counter.countDown()
+    expect(counter.countDown()).toBe(2)
   })
   it('[8] the count eventually reaches zero but does not go below zero', () => {
-    // ✨ test away
+    counter.countDown()
+    counter.countDown()
+    counter.countDown()
+    counter.countDown()
+    expect(counter.countDown()).toBe(0)
+    expect(counter.countDown()).toBe(0)
   })
 })
 
@@ -60,24 +74,42 @@ describe('[Exercise 5] Seasons', () => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
   it('[9] the FIRST call of seasons.next returns "summer"', () => {
-    // ✨ test away
+    expect(seasons.season).toBe('spring')
+    iterate(1)
+    expect(seasons.season).toBe('summer')
   })
   it('[10] the SECOND call of seasons.next returns "fall"', () => {
-    // ✨ test away
+    expect(seasons.season).toBe('spring')
+    iterate(2)
+    expect(seasons.season).toBe('fall')
   })
   it('[11] the THIRD call of seasons.next returns "winter"', () => {
-    // ✨ test away
+    expect(seasons.season).toBe('spring')
+    iterate(3)
+    expect(seasons.season).toBe('winter')
   })
   it('[12] the FOURTH call of seasons.next returns "spring"', () => {
-    // ✨ test away
+    expect(seasons.season).toBe('spring')
+    iterate(4)
+    expect(seasons.season).toBe('spring')
   })
   it('[13] the FIFTH call of seasons.next returns again "summer"', () => {
-    // ✨ test away
+    expect(seasons.season).toBe('spring')
+    iterate(5)
+    expect(seasons.season).toBe('summer')
   })
   it('[14] the 40th call of seasons.next returns "spring"', () => {
-    // ✨ test away
+    expect(seasons.season).toBe('spring')
+    iterate(40)
+    expect(seasons.season).toBe('spring')
   })
+  function iterate(num) {
+    for(let i = 0; i < num; i++){
+      seasons.next()
+    }
+  }
 })
+
 
 describe('[Exercise 6] Car', () => {
   let focus
@@ -85,16 +117,44 @@ describe('[Exercise 6] Car', () => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
   it('[15] driving the car returns the updated odometer', () => {
+    expect(focus.odometer).toBe(0)
+    focus.drive(10)
+    focus.drive(5)
+    expect(focus.odometer).toBe(15)
     // ✨ test away
   })
   it('[16] driving the car uses gas', () => {
     // ✨ test away
+    expect(focus.odometer).toBe(0)
+    focus.drive(30)
+    expect(focus.odometer).toBe(30)
+    expect(focus.tank).toBe(19)
   })
   it('[17] refueling allows to keep driving', () => {
     // ✨ test away
+    expect(focus.odometer).toBe(0)
+    expect(focus.tank).toBe(20)
+    focus.drive(60)
+    expect(focus.odometer).toBe(60)
+    expect(focus.tank).toBe(18)
+    focus.refuel(1)
+    expect(focus.odometer).toBe(60)
+    expect(focus.tank).toBe(19)
   })
   it('[18] adding fuel to a full tank has no effect', () => {
     // ✨ test away
+    expect(focus.odometer).toBe(0)
+    expect(focus.tank).toBe(20)
+    focus.drive(60)
+    expect(focus.odometer).toBe(60)
+    expect(focus.tank).toBe(18)
+    focus.refuel(2)
+    expect(focus.odometer).toBe(60)
+    expect(focus.tank).toBe(20)
+    focus.refuel(3)
+    focus.refuel(100)
+    focus.refuel(63)
+    expect(focus.tank).toBe(20)
   })
 })
 

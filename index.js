@@ -34,8 +34,21 @@ function trimProperties(obj) {
 
 function trimPropertiesMutation(obj) {
   // ✨ implement
-  obj = trimProperties(obj)
-  return obj
+  // obj = trimProperties(obj)
+  // return obj
+
+  let objToArr = Object.entries(obj)
+  const newObj = obj
+  const objectBuilder = (key, value) => {
+    return newObj[key] = value.trim()
+  }
+
+  objToArr.forEach(arr => {
+    return objectBuilder(arr[0], arr[1])
+  })
+
+  return newObj
+
 
 }
 
@@ -50,6 +63,16 @@ function trimPropertiesMutation(obj) {
 
 function findLargestInteger(integers) {
   // ✨ implement
+  let currentLargest = integers[0]
+  for(let i = 0; i < integers.length; i++){
+    if(integers[i] > currentLargest){
+      currentLargest = integers[i]
+    } else {
+      currentLargest
+    }
+  }
+  return currentLargest
+
 }
 
 class Counter {
@@ -59,6 +82,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.initialNumber = initialNumber + 1
   }
 
   /**
@@ -75,6 +99,7 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    return (this.initialNumber === 0) ? this.initialNumber = 0 : this.initialNumber -= 1
   }
 }
 
@@ -84,6 +109,7 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.season = 'spring'
   }
 
   /**
@@ -100,6 +126,15 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    if (this.season === 'spring'){
+      this.season = 'summer'
+    } else if (this.season === 'summer'){
+      this.season = 'fall'
+    } else if (this.season === 'fall'){
+      this.season = 'winter'
+    } else {
+      this.season = 'spring'
+    }
   }
 }
 
@@ -111,9 +146,12 @@ class Car {
    * @param {number} mpg - miles the car can drive per gallon of gas
    */
   constructor(name, tankSize, mpg) {
+    this.name = name
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.mpg = mpg
+    this.maxTankSize = tankSize
   }
 
   /**
@@ -131,6 +169,8 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    this.odometer += distance
+    this.tank = this.tank - (distance/this.mpg)
   }
 
   /**
@@ -146,6 +186,7 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    (this.tank + gallons > this.maxTankSize) ? this.tank : this.tank += gallons
   }
 }
 
