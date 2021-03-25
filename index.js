@@ -6,8 +6,21 @@
  * EXAMPLE
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
+
 function trimProperties(obj) {
   // ✨ implement
+  let objToArr = Object.entries(obj)
+  const newObj = {}
+  const objectBuilder = (key, value) => {
+    return newObj[key] = value.trim()
+  }
+
+  objToArr.forEach(arr => {
+    return objectBuilder(arr[0], arr[1])
+  })
+
+  return newObj
+
 }
 
 /**
@@ -18,8 +31,12 @@ function trimProperties(obj) {
  * EXAMPLE
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
+
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  obj = trimProperties(obj)
+  return obj
+
 }
 
 /**
@@ -30,6 +47,7 @@ function trimPropertiesMutation(obj) {
  * EXAMPLE
  * findLargestInteger([2, 1, 7, 3, 14, 7]) // returns 14
  */
+
 function findLargestInteger(integers) {
   // ✨ implement
 }
